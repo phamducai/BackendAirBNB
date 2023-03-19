@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model comments {
+  id           Int     @id @default(autoincrement())
+  user_id      Int?
+  room_id      Int?
+  comment_date String? @db.VarChar(255)
+  content      String? @db.VarChar(255)
+  rate         Int?
+  users        users?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comments_ibfk_1")
+  rooms        rooms?  @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comments_ibfk_2")
+
+  @@index([room_id], map: "room_id")
+  @@index([user_id], map: "user_id")
+}
+
+model location {
+  id            Int     @id @default(autoincrement())
+  location_name String? @db.VarChar(255)
+  city          String? @db.VarChar(255)
+  country       String? @db.VarChar(255)
+  image         String? @db.VarChar(255)
+  rooms         rooms[]
+}
+
+model rooms {
+  id              Int        @id @default(autoincrement())
+  room_name       String?    @db.VarChar(255)
+  max_guest       String?    @db.VarChar(255)
+  bed_room        String?    @db.VarChar(255)
+  bed             String?    @db.VarChar(255)
+  bath_room       String?    @db.VarChar(255)
+  description     String?    @db.VarChar(255)
+  price           Int?
+  washing_maching String?    @db.VarChar(255)
+  iron            Boolean?
+  tivi            Boolean?
+  air_condition   Boolean?
+  wifi            Boolean?
+  kitchen         Boolean?
+  parking         Boolean?
+  pool            Boolean?
+  laundry         Boolean?
+  image           String?    @db.VarChar(255)
+  location_id     Int
+  bookroom        bookroom[]
+  comments        comments[]
+  location        location   @relation(fields: [location_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "rooms_ibfk_1")
+
+  @@index([location_id], map: "location_id")
+}
+
+model users {
+  id        Int        @id @default(autoincrement())
+  name      String?    @db.VarChar(255)
+  email     String?    @unique(map: "email") @db.VarChar(255)
+  pass_word String?    @db.VarChar(255)
+  phone     String?    @db.VarChar(255)
+  birth_day String?    @db.VarChar(255)
+  gender    String?    @db.VarChar(255)
+  role      String?    @db.VarChar(255)
+  bookroom  bookroom[]
+  comments  comments[]
+}
+
+model bookroom {
+  id           Int       @id @default(autoincrement())
+  room_id      Int?
+  start_day    DateTime? @db.Date
+  end_day      DateTime? @db.Date
+  guest_number Int?
+  user_id      Int?
+  rooms        rooms?    @relation(fields: [room_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "bookroom_ibfk_2")
+  users        users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "bookroom_ibfk_3")
+
+  @@index([room_id], map: "room_id")
+  @@index([user_id], map: "user_id")
+}
