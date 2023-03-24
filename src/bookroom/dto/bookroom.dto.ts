@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
-export interface Bookroom {
+export interface Booking {
   id: number;
   room_id: number;
-  start_day: Date;
-  end_day: Date;
-  guest_number: number;
+  arrival_date: Date;
+  depart_date: Date;
+  customer_quantity: number;
   user_id: number;
 }

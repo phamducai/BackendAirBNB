@@ -7,79 +7,79 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model comments {
-  id           Int     @id @default(autoincrement())
-  user_id      Int?
-  room_id      Int?
-  comment_date String? @db.VarChar(255)
-  content      String? @db.VarChar(255)
-  rate         Int?
-  users        users?  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comments_ibfk_1")
-  rooms        rooms?  @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comments_ibfk_2")
+model booking {
+  id                Int      @id @default(autoincrement())
+  room_id           Int
+  arrival_date      DateTime @db.Date
+  depart_date       DateTime @db.Date
+  customer_quantity Int
+  user_id           Int
+  user              user     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "booking_ibfk_2")
+  room              room     @relation(fields: [room_id], references: [id], onUpdate: Restrict, map: "booking_ibfk_1")
+
+  @@index([room_id], map: "room_id")
+  @@index([user_id], map: "user_id")
+}
+
+model comment {
+  id           Int      @id @default(autoincrement())
+  room_id      Int
+  user_id      Int
+  date_comment DateTime @db.DateTime(0)
+  content      String   @db.Text
+  rate         Int
+  room         room     @relation(fields: [room_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comment_ibfk_1")
+  user         user     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comment_ibfk_2")
 
   @@index([room_id], map: "room_id")
   @@index([user_id], map: "user_id")
 }
 
 model location {
-  id            Int     @id @default(autoincrement())
-  location_name String? @db.VarChar(255)
-  city          String? @db.VarChar(255)
-  country       String? @db.VarChar(255)
-  image         String? @db.VarChar(255)
-  rooms         rooms[]
+  id            Int    @id @default(autoincrement())
+  location_name String @db.VarChar(255)
+  province      String @db.VarChar(255)
+  nation        String @db.VarChar(255)
+  image         String @db.VarChar(255)
+  room          room[]
 }
 
-model rooms {
-  id              Int        @id @default(autoincrement())
-  room_name       String?    @db.VarChar(255)
-  max_guest       String?    @db.VarChar(255)
-  bed_room        String?    @db.VarChar(255)
-  bed             String?    @db.VarChar(255)
-  bath_room       String?    @db.VarChar(255)
-  description     String?    @db.VarChar(255)
-  price           Int?
-  washing_maching String?    @db.VarChar(255)
-  iron            Boolean?
-  tivi            Boolean?
-  air_condition   Boolean?
-  wifi            Boolean?
-  kitchen         Boolean?
-  parking         Boolean?
-  pool            Boolean?
-  laundry         Boolean?
-  image           String?    @db.VarChar(255)
+model room {
+  id              Int       @id @default(autoincrement())
+  room_name       String    @db.VarChar(255)
+  max_customer    String    @db.VarChar(255)
+  bed             String    @db.VarChar(255)
+  bedroom         String    @db.VarChar(255)
+  bathroom        String    @db.VarChar(255)
+  description     String    @db.VarChar(255)
+  price           String    @db.VarChar(255)
+  washing_machine Int       @db.TinyInt
+  iron            Int       @db.TinyInt
+  tivi            Int       @db.TinyInt
+  air_conditioner Int       @db.TinyInt
+  wifi            Int       @db.TinyInt
+  kitchen         Int       @db.TinyInt
+  parking         Int       @db.TinyInt
+  pool            Int       @db.TinyInt
+  laundry         Int       @db.TinyInt
+  image           String    @db.VarChar(255)
   location_id     Int
-  bookroom        bookroom[]
-  comments        comments[]
-  location        location   @relation(fields: [location_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "rooms_ibfk_1")
+  booking         booking[]
+  comment         comment[]
+  location        location  @relation(fields: [location_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "room_ibfk_1")
 
   @@index([location_id], map: "location_id")
 }
 
-model users {
-  id        Int        @id @default(autoincrement())
-  name      String?    @db.VarChar(255)
-  email     String?    @unique(map: "email") @db.VarChar(255)
-  pass_word String?    @db.VarChar(255)
-  phone     String?    @db.VarChar(255)
-  birth_day String?    @db.VarChar(255)
-  gender    String?    @db.VarChar(255)
-  role      String?    @db.VarChar(255)
-  bookroom  bookroom[]
-  comments  comments[]
-}
-
-model bookroom {
-  id           Int       @id @default(autoincrement())
-  room_id      Int?
-  start_day    DateTime? @db.Date
-  end_day      DateTime? @db.Date
-  guest_number Int?
-  user_id      Int?
-  rooms        rooms?    @relation(fields: [room_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "bookroom_ibfk_2")
-  users        users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "bookroom_ibfk_3")
-
-  @@index([room_id], map: "room_id")
-  @@index([user_id], map: "user_id")
+model user {
+  id       Int       @id @default(autoincrement())
+  name     String    @db.VarChar(255)
+  email    String    @unique(map: "email") @db.VarChar(255)
+  password String    @db.VarChar(255)
+  phone    String?   @db.VarChar(255)
+  birthday DateTime? @db.Date
+  gender   String    @db.VarChar(255)
+  role     String?   @db.VarChar(255)
+  booking  booking[]
+  comment  comment[]
 }

@@ -2,9 +2,9 @@
 export class AuthDTO {
   name: string;
   email: string;
-  pass_word: string;
+  password: string;
   phone: string;
-  birth_day: string;
+  birthday: Date;
   gender: string;
   role: string;
 }

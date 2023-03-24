@@ -13,27 +13,27 @@ import { CommentsDTO } from './dto/comment.dto';
 export class CommentsService {
   constructor(private prismaService: PrismaService) {} // Injects the PrismaService to the constructor of CommentsService.
 
-  async getAllComment(): Promise<CommentsDTO[]> {
+  async getAllComment(): Promise<CommentsDTO[] | any> {
     // Async function that returns all stored comments in Response DTO.
     try {
-      const getAllComment = await this.prismaService.comments.findMany(); // obtain all comments from database using the injected PrismaService instance.
-      return getAllComment; // when a list is obtained, it's returned as a response.
+      const getAllComment = await this.prismaService.comment.findMany(); // obtain all comments from database using the injected PrismaService instance.
+      return getAllComment;
     } catch (error) {
-      throw new BadRequestException(); // In case of any error, a HTTP 400 Bad Request Exception is thrown.
+      throw new BadRequestException();
     }
   }
 
-  async postComments(commentDTO: CommentsDTO): Promise<CommentsDTO> {
+  async postComments(commentDTO: CommentsDTO): Promise<CommentsDTO | any> {
     // Async function for posting a comment, takes the CommentDTO instance as an input and returns newly created comment DTO object.
     console.log(commentDTO); // Log the commentDTO object in the backend console.
 
     try {
-      const createComment = await this.prismaService.comments.create({
+      const createComment = await this.prismaService.comment.create({
         // Create a new comment instance with data received in commentDTO.
         data: {
           user_id: commentDTO?.user_id,
           room_id: commentDTO.room_id,
-          comment_date: commentDTO.comment_date,
+          date_comment: new Date(),
           content: commentDTO.content,
           rate: commentDTO.rate,
         },
@@ -51,19 +51,18 @@ export class CommentsService {
   async updateCommentbyuser(
     commentDTO: CommentsDTO,
     id: number,
-  ): Promise<CommentsDTO> {
+  ): Promise<CommentsDTO | any> {
     // Async function for updating an existing comment, takes commentDTO as an input and comment id as the parameters, returns updated comment DTO.
-    console.log(commentDTO, id);
 
     try {
-      const updatecomment = await this.prismaService.comments.update({
+      const updatecomment = await this.prismaService.comment.update({
         where: {
           id: id, // Finds the existing comment through its unique ID.
         },
         data: {
           user_id: commentDTO.user_id,
           room_id: commentDTO.room_id,
-          comment_date: commentDTO.comment_date,
+          date_comment: new Date(),
           content: commentDTO.content,
           rate: commentDTO.rate,
         },
@@ -78,10 +77,10 @@ export class CommentsService {
     }
   }
 
-  async deleteComment(id: number): Promise<CommentsDTO> {
+  async deleteComment(id: number): Promise<CommentsDTO | any> {
     // Async function for deleting a comment, takes id as a parameter and returns deleted comment's DTO object.
     try {
-      const deletecomment = await this.prismaService.comments.delete({
+      const deletecomment = await this.prismaService.comment.delete({
         where: {
           id: id, // Deletes the comment entry identified by this ID.
         },
@@ -97,9 +96,9 @@ export class CommentsService {
     }
   }
 
-  async getCommentsbyroomid(roomid: number): Promise<CommentsDTO[]> {
+  async getCommentsbyroomid(roomid: number): Promise<CommentsDTO[] | any> {
     try {
-      const getcommentbyroom = await this.prismaService.comments.findMany({
+      const getcommentbyroom = await this.prismaService.comment.findMany({
         where: { room_id: roomid },
       });
       return getcommentbyroom; // Returns all comments associated with a specific room ID

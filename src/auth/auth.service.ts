@@ -5,34 +5,35 @@ import {
   BadRequestException,
   NotFoundException,
 } from '@nestjs/common';
-
+import * as argon from 'argon2';
 import { PrismaService } from '../prisma/prisma.service';
 import { AuthDTO } from './dto';
-import * as argon from 'argon2';
+
 @Injectable()
 export class AuthService {
   constructor(private prismaService: PrismaService) {}
+
   async register(authDTO: AuthDTO): Promise<AuthDTO> {
-    const hashedPassword = await argon.hash(authDTO.pass_word);
+    console.log(authDTO);
+    const hashedPassword = await argon.hash(authDTO.password);
 
     try {
-      const user = await this.prismaService.users.create({
+      const user = await this.prismaService.user.create({
         data: {
           name: authDTO.name,
           email: authDTO.email,
-          pass_word: hashedPassword,
+          password: hashedPassword,
           phone: authDTO.phone,
-          birth_day: authDTO.birth_day,
+          birthday: new Date(authDTO.birthday),
           gender: authDTO.gender,
           role: authDTO.role,
         },
       });
-      delete user.pass_word;
+      delete user.password;
       return user;
     } catch (error) {
       const { code } = error;
       if (code === 'P2002') {
-        console.log(error);
         throw new ForbiddenException('User with this email already exists');
       }
       throw new BadRequestException('bad request');
@@ -40,7 +41,7 @@ export class AuthService {
   }
   async login(authDTO: AuthDTO) {
     try {
-      const user = await this.prismaService.users.findUnique({
+      const user = await this.prismaService.user.findUnique({
         where: {
           email: authDTO.email,
         },
@@ -48,18 +49,19 @@ export class AuthService {
       if (!user) {
         throw new NotFoundException('Password or Email Incorrect');
       }
-
+      console.log(user);
       const passwordMatched = await argon.verify(
-        user.pass_word,
-        authDTO.pass_word,
+        user.password,
+        authDTO.password,
       );
-
+      console.log(authDTO);
       if (!passwordMatched) {
         throw new ForbiddenException('Password or Email Incorrect');
       }
-      delete user.pass_word;
-
+      delete user.password;
       return user;
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

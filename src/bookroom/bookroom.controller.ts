@@ -9,34 +9,34 @@ import {
   Put,
 } from '@nestjs/common';
 import { BookroomService } from './bookroom.service';
-import { Bookroom } from './dto/bookroom.dto';
+import { Booking } from './dto/bookroom.dto';
 
 @Controller('bookroom')
 export class BookroomController {
   constructor(private bookRoomService: BookroomService) {}
   @Get('')
-  getBookrooms(): Promise<Bookroom[]> {
+  getBookrooms(): Promise<Booking[]> {
     return this.bookRoomService.getAllBookRoom();
   }
   @Post('')
-  postBookRooms(@Body() bookroomDTO: Bookroom): Promise<Bookroom> {
+  postBookRooms(@Body() bookroomDTO: Booking): Promise<Booking> {
     return this.bookRoomService.postBookRoom(bookroomDTO);
   }
   @Get(':id')
-  getBookRoomById(@Param('id', ParseIntPipe) id: number): Promise<Bookroom> {
+  getBookRoomById(@Param('id', ParseIntPipe) id: number): Promise<Booking> {
     return this.bookRoomService.getBookRoombyid(id);
   }
   @Put(':id')
   updateComment(
-    @Body() bookroomDTO: Bookroom,
+    @Body() bookroomDTO: Booking,
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<Bookroom> {
+  ): Promise<Booking> {
     console.log(id);
     return this.bookRoomService.updateBookRoombyid(bookroomDTO, id);
   }
 
   @Delete(':id')
-  deleteBookRoom(@Param('id', ParseIntPipe) id: number): Promise<Bookroom> {
+  deleteBookRoom(@Param('id', ParseIntPipe) id: number): Promise<Booking> {
     return this.bookRoomService.deleteBookRoom(id);
   }
 }
