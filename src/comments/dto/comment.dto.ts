@@ -3,7 +3,7 @@ export interface CommentsDTO {
   id: number;
   user_id: number;
   room_id: number;
-  date_comment: string;
+  date_comment: Date;
   content: string;
   rate: number;
 }

@@ -14,8 +14,8 @@ model booking {
   depart_date       DateTime @db.Date
   customer_quantity Int
   user_id           Int
-  user              user     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "booking_ibfk_2")
   room              room     @relation(fields: [room_id], references: [id], onUpdate: Restrict, map: "booking_ibfk_1")
+  user              user     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "booking_ibfk_2")
 
   @@index([room_id], map: "room_id")
   @@index([user_id], map: "user_id")
@@ -53,16 +53,16 @@ model room {
   bathroom        String    @db.VarChar(255)
   description     String    @db.VarChar(255)
   price           String    @db.VarChar(255)
-  washing_machine Int       @db.TinyInt
-  iron            Int       @db.TinyInt
-  tivi            Int       @db.TinyInt
-  air_conditioner Int       @db.TinyInt
-  wifi            Int       @db.TinyInt
-  kitchen         Int       @db.TinyInt
-  parking         Int       @db.TinyInt
-  pool            Int       @db.TinyInt
-  laundry         Int       @db.TinyInt
-  image           String    @db.VarChar(255)
+  washing_machine Boolean?
+  iron            Boolean?
+  tivi            Boolean?
+  air_conditioner Boolean?
+  wifi            Boolean?
+  kitchen         Boolean?
+  parking         Boolean?
+  pool            Boolean?
+  laundry         Boolean?
+  image           String    @db.LongText
   location_id     Int
   booking         booking[]
   comment         comment[]

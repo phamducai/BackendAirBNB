@@ -6,27 +6,23 @@ import {
   NotFoundException,
   BadRequestException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service'; // import prisma service to communicate with the database
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CommentsDTO } from './dto/comment.dto';
 
 @Injectable()
 export class CommentsService {
-  constructor(private prismaService: PrismaService) {} // Injects the PrismaService to the constructor of CommentsService.
+  constructor(private prismaService: PrismaService) {}
 
-  async getAllComment(): Promise<CommentsDTO[] | any> {
-    // Async function that returns all stored comments in Response DTO.
+  async getAllComment(): Promise<CommentsDTO[]> {
     try {
-      const getAllComment = await this.prismaService.comment.findMany(); // obtain all comments from database using the injected PrismaService instance.
+      const getAllComment = await this.prismaService.comment.findMany();
       return getAllComment;
     } catch (error) {
       throw new BadRequestException();
     }
   }
 
-  async postComments(commentDTO: CommentsDTO): Promise<CommentsDTO | any> {
-    // Async function for posting a comment, takes the CommentDTO instance as an input and returns newly created comment DTO object.
-    console.log(commentDTO); // Log the commentDTO object in the backend console.
-
+  async postComments(commentDTO: CommentsDTO): Promise<CommentsDTO> {
     try {
       const createComment = await this.prismaService.comment.create({
         // Create a new comment instance with data received in commentDTO.
@@ -51,7 +47,7 @@ export class CommentsService {
   async updateCommentbyuser(
     commentDTO: CommentsDTO,
     id: number,
-  ): Promise<CommentsDTO | any> {
+  ): Promise<CommentsDTO> {
     // Async function for updating an existing comment, takes commentDTO as an input and comment id as the parameters, returns updated comment DTO.
 
     try {
@@ -77,7 +73,7 @@ export class CommentsService {
     }
   }
 
-  async deleteComment(id: number): Promise<CommentsDTO | any> {
+  async deleteComment(id: number): Promise<CommentsDTO> {
     // Async function for deleting a comment, takes id as a parameter and returns deleted comment's DTO object.
     try {
       const deletecomment = await this.prismaService.comment.delete({
@@ -96,7 +92,7 @@ export class CommentsService {
     }
   }
 
-  async getCommentsbyroomid(roomid: number): Promise<CommentsDTO[] | any> {
+  async getCommentsbyroomid(roomid: number): Promise<CommentsDTO[]> {
     try {
       const getcommentbyroom = await this.prismaService.comment.findMany({
         where: { room_id: roomid },
