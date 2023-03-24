@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
@@ -10,9 +11,11 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     public prismaService: PrismaService,
   ) {
     super({
-      //token string is added to every request(except login / register)
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: configService.get('JWT_SECRET'),
     });
+  }
+  async validate(payload: any) {
+    return payload;
   }
 }
