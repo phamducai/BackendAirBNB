@@ -39,4 +39,10 @@ export class BookroomController {
   deleteBookRoom(@Param('id', ParseIntPipe) id: number): Promise<Booking> {
     return this.bookRoomService.deleteBookRoom(id);
   }
+  @Get('user/:id')
+  getBookRoomByUserId(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<Booking[]> {
+    return this.bookRoomService.getBookRoombyUserId(id);
+  }
 }
