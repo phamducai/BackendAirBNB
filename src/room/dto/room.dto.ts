@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 export interface RoomDTO {
-  id: number;
+  id?: number;
   room_name: string;
   max_customer: string;
   bed: string;
@@ -16,6 +17,7 @@ export interface RoomDTO {
   parking: boolean;
   pool: boolean;
   laundry: boolean;
+
   image: string;
   location_id: number;
 }
