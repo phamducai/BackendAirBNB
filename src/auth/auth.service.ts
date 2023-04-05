@@ -1,67 +1,75 @@
-/* eslint-disable prettier/prettier */
-import {
-  ForbiddenException,
-  Injectable,
-  BadRequestException,
-  NotFoundException,
-} from '@nestjs/common';
-import * as argon from 'argon2';
-import { PrismaService } from '../prisma/prisma.service';
-import { AuthDTO } from './dto';
-
+import { ConfigService } from '@nestjs/config'
+import { ForbiddenException, Injectable } from '@nestjs/common'
+import { PrismaService } from '../prisma/prisma.service'
+import { RegisterAuthDTO, LoginAuthDTO } from './dto/auth.dto'
+import * as argon from 'argon2'
+import { JwtService } from '@nestjs/jwt'
 @Injectable()
 export class AuthService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    private jwtService: JwtService,
+    private configService: ConfigService
+  ) {}
 
-  async register(authDTO: AuthDTO): Promise<AuthDTO> {
-    console.log(authDTO);
-    const hashedPassword = await argon.hash(authDTO.password);
-
+  async register(registerDTO: RegisterAuthDTO) {
     try {
-      const user = await this.prismaService.user.create({
+      const hashedPassword = await argon.hash(registerDTO.password)
+      console.log(hashedPassword)
+      const dataImport = await this.prismaService.user.create({
         data: {
-          name: authDTO.name,
-          email: authDTO.email,
+          name: registerDTO.name,
+          email: registerDTO.email,
           password: hashedPassword,
-          phone: authDTO.phone,
-          birthday: new Date(authDTO.birthday),
-          gender: authDTO.gender,
-          role: authDTO.role,
+          gender: registerDTO.gender,
+          phone: registerDTO.phone,
+          birthday: new Date(registerDTO.birthday),
+          role: 'Customer'
         },
-      });
-      delete user.password;
-      return user;
+        select: {
+          id: true,
+          email: true,
+          password: true,
+          gender: true
+        }
+      })
+      return dataImport
     } catch (error) {
-      const { code } = error;
-      if (code === 'P2002') {
-        throw new ForbiddenException('User with this email already exists');
+      console.log(error)
+
+      if (error.code === 'P2002') {
+        throw new ForbiddenException('Email is already registered')
       }
-      throw new BadRequestException('bad request');
     }
   }
-  async login(authDTO: AuthDTO) {
-    try {
-      const user = await this.prismaService.user.findUnique({
-        where: {
-          email: authDTO.email,
-        },
-      });
-      if (!user) {
-        throw new NotFoundException('Password or Email Incorrect');
+
+  async login(loginDTO: LoginAuthDTO) {
+    const user = await this.prismaService.user.findUnique({
+      where: {
+        email: loginDTO.email
       }
-      console.log(user);
-      const passwordMatched = await argon.verify(
-        user.password,
-        authDTO.password,
-      );
-      console.log(authDTO);
-      if (!passwordMatched) {
-        throw new ForbiddenException('Password or Email Incorrect');
-      }
-      delete user.password;
-      return user;
-    } catch (error) {
-      console.log(error);
+    })
+
+    if (!user) {
+      throw new ForbiddenException('User not found')
     }
+
+    const passwordMatched = await argon.verify(user.password, loginDTO.password)
+
+    if (!passwordMatched) {
+      throw new ForbiddenException('Incorrect password')
+    }
+
+    return await this.signJwtToken(user.id, user.email)
+  }
+
+  async signJwtToken(userId: number, email: string) {
+    const payload = { sub: userId, email }
+
+    const accessToken = await this.jwtService.signAsync(payload, {
+      expiresIn: '60m',
+      secret: this.configService.get('JWT_SECRET')
+    })
+    return { accessToken }
   }
 }

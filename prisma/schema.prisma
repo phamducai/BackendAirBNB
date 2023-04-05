@@ -17,8 +17,8 @@ model booking {
   room              room     @relation(fields: [room_id], references: [id], onUpdate: Restrict, map: "booking_ibfk_1")
   user              user     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "booking_ibfk_2")
 
-  @@index([room_id], map: "room_id")
   @@index([user_id], map: "user_id")
+  @@index([room_id], map: "booking_ibfk_1")
 }
 
 model comment {
@@ -40,7 +40,7 @@ model location {
   location_name String @db.VarChar(255)
   province      String @db.VarChar(255)
   nation        String @db.VarChar(255)
-  image         String @db.VarChar(255)
+  image         String @db.LongText
   room          room[]
 }
 
@@ -80,6 +80,7 @@ model user {
   birthday DateTime? @db.Date
   gender   String    @db.VarChar(255)
   role     String?   @db.VarChar(255)
+  avatar   String?   @db.LongText
   booking  booking[]
   comment  comment[]
 }

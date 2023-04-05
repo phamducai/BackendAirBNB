@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config/dist';
-
+import { ConfigService } from '@nestjs/config';
 import { PrismaClient } from '@prisma/client';
 
 @Injectable()
+// This service is used to connect DB
 export class PrismaService extends PrismaClient {
   constructor(configService: ConfigService) {
     super({

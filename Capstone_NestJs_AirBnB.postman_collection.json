@@ -1,0 +1,1379 @@
+{
+	"info": {
+		"_postman_id": "fdd33135-846d-4c9a-bc08-d3574c789928",
+		"name": "Capstone_NestJs_AirBnB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23671311"
+	},
+	"item": [
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "1/ Get Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2/ Get Users By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3/ Create User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "27",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Nguyễn Quang Bách",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0919249695",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "1999-02-02",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "Female",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "mrbachloveyou@gmail.colappse",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "Customer",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4/ Update User By Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "mrbachloveyou@gmail.comgabi",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Nguyễn Quang Bách",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0919249695",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "1999-02-02",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "Female",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "Customer",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "27",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"3"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5/ Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIwLCJlbWFpbCI6Im1yYmFjaGxvdmV5b3VAZ21haWwuY29tIiwiaWF0IjoxNjc5NDY3MzA5LCJleHAiOjE2Nzk0NzA5MDl9.O28qkWKQVUAvCfeBEUuuU749QLpVzNb4NZ0uP-bdjs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Bachaaa",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0919249695",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "1999-02-16",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "Male",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/users?id=32",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "32"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6/ Search User With Pagination",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIwLCJlbWFpbCI6Im1yYmFjaGxvdmV5b3VAZ21haWwuY29tIiwiaWF0IjoxNjc5NDY3MzA5LCJleHAiOjE2Nzk0NzA5MDl9.O28qkWKQVUAvCfeBEUuuU749QLpVzNb4NZ0uP-bdjs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Bachaaa",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0919249695",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "1999-02-16",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "Male",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/phan-trang-tim-kiem?pageIndex=1&pageSize=10&keyword=a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"phan-trang-tim-kiem"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								},
+								{
+									"key": "keyword",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7/ Search User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIwLCJlbWFpbCI6Im1yYmFjaGxvdmV5b3VAZ21haWwuY29tIiwiaWF0IjoxNjc5NDY3MzA5LCJleHAiOjE2Nzk0NzA5MDl9.O28qkWKQVUAvCfeBEUuuU749QLpVzNb4NZ0uP-bdjs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Bachaaa",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0919249695",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "1999-02-16",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "Male",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/search/a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"search",
+								"a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8/ Upload Avatar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIwLCJlbWFpbCI6Im1yYmFjaGxvdmV5b3VAZ21haWwuY29tIiwiaWF0IjoxNjc5NDY3MzA5LCJleHAiOjE2Nzk0NzA5MDl9.O28qkWKQVUAvCfeBEUuuU749QLpVzNb4NZ0uP-bdjs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Bach/Pictures/abc.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/upload/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"upload",
+								"2"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Location Management",
+			"item": [
+				{
+					"name": "1/ Get Location",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/location",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2/ Get Location By ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/location/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"location",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3/ Update Location By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIwLCJlbWFpbCI6Im1yYmFjaGxvdmV5b3VAZ21haWwuY29tIiwiaWF0IjoxNjc5NDY3MzA5LCJleHAiOjE2Nzk0NzA5MDl9.O28qkWKQVUAvCfeBEUuuU749QLpVzNb4NZ0uP-bdjs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "location_name",
+									"value": "Vạn Phúc City",
+									"type": "text"
+								},
+								{
+									"key": "province",
+									"value": "Hồ Chí Minh",
+									"type": "text"
+								},
+								{
+									"key": "nation",
+									"value": "Việt Name",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "https://www.google.com/maps/uv?pb=!1s0x317529a09995a2f5%3A0x26fbb93c2a517d40!3m1!7e115!4shttps%3A%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipP9wiH53xHg2WbQdc-x_xXoS2tZab-CWyYSH7kI%3Dw338-h227-n-k-no!5zduG6oW4gcGjDumMgY2l0eSAtIFTDrG0gdHLDqm4gR29vZ2xl!15sCgIgAQ&imagekey=!1e10!2sAF1QipP9wiH53xHg2WbQdc-x_xXoS2tZab-CWyYSH7kI&hl=vi&sa=X&ved=2ahUKEwjR5tOD4Pn9AhWUmVYBHexPCagQ7ZgBKAB6BAgVEAI#",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/location/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"location",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4/ Delete Location By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIwLCJlbWFpbCI6Im1yYmFjaGxvdmV5b3VAZ21haWwuY29tIiwiaWF0IjoxNjc5NDY3MzA5LCJleHAiOjE2Nzk0NzA5MDl9.O28qkWKQVUAvCfeBEUuuU749QLpVzNb4NZ0uP-bdjs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "location_name",
+									"value": "Vạn Phúc City",
+									"type": "text"
+								},
+								{
+									"key": "province",
+									"value": "Hồ Chí Minh",
+									"type": "text"
+								},
+								{
+									"key": "nation",
+									"value": "Việt Name",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "https://www.google.com/maps/uv?pb=!1s0x317529a09995a2f5%3A0x26fbb93c2a517d40!3m1!7e115!4shttps%3A%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipP9wiH53xHg2WbQdc-x_xXoS2tZab-CWyYSH7kI%3Dw338-h227-n-k-no!5zduG6oW4gcGjDumMgY2l0eSAtIFTDrG0gdHLDqm4gR29vZ2xl!15sCgIgAQ&imagekey=!1e10!2sAF1QipP9wiH53xHg2WbQdc-x_xXoS2tZab-CWyYSH7kI&hl=vi&sa=X&ved=2ahUKEwjR5tOD4Pn9AhWUmVYBHexPCagQ7ZgBKAB6BAgVEAI#",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/location/16",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"location",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5/ Create New Location",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIwLCJlbWFpbCI6Im1yYmFjaGxvdmV5b3VAZ21haWwuY29tIiwiaWF0IjoxNjc5NDY3MzA5LCJleHAiOjE2Nzk0NzA5MDl9.O28qkWKQVUAvCfeBEUuuU749QLpVzNb4NZ0uP-bdjs0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "location_name",
+									"value": "Vạn Phúc City",
+									"type": "text"
+								},
+								{
+									"key": "province",
+									"value": "Hồ Chí Minh",
+									"type": "text"
+								},
+								{
+									"key": "nation",
+									"value": "Việt Name",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "https://www.google.com/maps/uv?pb=!1s0x317529a09995a2f5%3A0x26fbb93c2a517d40!3m1!7e115!4shttps%3A%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipP9wiH53xHg2WbQdc-x_xXoS2tZab-CWyYSH7kI%3Dw338-h227-n-k-no!5zduG6oW4gcGjDumMgY2l0eSAtIFTDrG0gdHLDqm4gR29vZ2xl!15sCgIgAQ&imagekey=!1e10!2sAF1QipP9wiH53xHg2WbQdc-x_xXoS2tZab-CWyYSH7kI&hl=vi&sa=X&ved=2ahUKEwjR5tOD4Pn9AhWUmVYBHexPCagQ7ZgBKAB6BAgVEAI#",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/location",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6/ Search Location By Page",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "location_name",
+									"value": "Vạn Phúc City",
+									"type": "text"
+								},
+								{
+									"key": "province",
+									"value": "Hồ Chí Minh",
+									"type": "text"
+								},
+								{
+									"key": "nation",
+									"value": "Việt Name",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "https://www.google.com/maps/uv?pb=!1s0x317529a09995a2f5%3A0x26fbb93c2a517d40!3m1!7e115!4shttps%3A%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipP9wiH53xHg2WbQdc-x_xXoS2tZab-CWyYSH7kI%3Dw338-h227-n-k-no!5zduG6oW4gcGjDumMgY2l0eSAtIFTDrG0gdHLDqm4gR29vZ2xl!15sCgIgAQ&imagekey=!1e10!2sAF1QipP9wiH53xHg2WbQdc-x_xXoS2tZab-CWyYSH7kI&hl=vi&sa=X&ved=2ahUKEwjR5tOD4Pn9AhWUmVYBHexPCagQ7ZgBKAB6BAgVEAI#",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/location/phan-trang-tim-kiem?pageIndex=1&pageSize=10&keyword=a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"location",
+								"phan-trang-tim-kiem"
+							],
+							"query": [
+								{
+									"key": "pageIndex",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								},
+								{
+									"key": "keyword",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7/ Upload Location Image",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Bach/Pictures/abc.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/location/upload/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"location",
+								"upload",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments Management",
+			"item": [
+				{
+					"name": "1/ GetAllComments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/comment/all",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comment",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2/ PutComment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_id\": 26,\r\n  \"room_id\": 1  ,\r\n  \"date_comment\":\"2022-02-01\" ,\r\n  \"content\": \"hahahahaha\",\r\n  \"rate\": 5 \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/comment/11",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comment",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3/ DeleteComment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/comment/11",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comment",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4/ Getcommentsbyroom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/comment/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5/ Createpost",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_id\": 1,\r\n  \"room_id\": 1  ,\r\n  \"date_comment\":\"2022-02-01\" ,\r\n  \"content\": \"huhu\",\r\n  \"rate\": 5 \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bookroom Management",
+			"item": [
+				{
+					"name": "1/ GetAllBookRoom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/bookroom",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bookroom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2/ postBookRoom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"room_id\":1,\r\n  \"arrival_date\":\"2023-03-19\",\r\n  \"depart_date\" :\"2023-03-20\",\r\n  \"customer_quantity\":2,\r\n  \"user_id\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/bookroom",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bookroom"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3/ bookRoomById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/bookroom/11",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bookroom",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4/ deleteBookRoom",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/bookroom/10",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"bookroom",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5/ getBookRoombyuserID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/bookroom/user/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"bookroom",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Room Management",
+			"item": [
+				{
+					"name": "1/ allRoom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/room/all",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"room",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2/ roomBylocationId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:3000/api/room/location?id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"room",
+								"location"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3/ pagination-search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/room/pagination?limit=3&page=2&search=a",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"room",
+								"pagination"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "search",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4/ roombyid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/room/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"room",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5/ PostRoom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"room_name\":\"haha\",\r\n    \"max_customer\":\"5\",\r\n    \"bed\":\"2\",\r\n    \"bedroom\":\"3\",\r\n    \"bathroom\":\"2\",\r\n    \"description\":\"dmm\" ,\r\n    \"price\":\"32134\",\r\n    \"washing_machine\":true  ,\r\n    \"iron\":true ,\r\n    \"tivi\":true,\r\n    \"air_conditioner\":true,\r\n    \"wifi\":true,\r\n    \"kitchen\":true,\r\n    \"parking\":true,\r\n    \"pool\":true,\r\n    \"laundry\":true,\r\n    \"image\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTOg-Fb2Ia1cZJlhKF9b65bbuptu1-h74fj9okUQzc&s\",\r\n    \"location_id\":5\r\n \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/room",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"room"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6/ Put Room By Id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"room_name\":\"hasdadsadsadaha\",\r\n    \"max_customer\":\"5\",\r\n    \"bed\":\"2\",\r\n    \"bedroom\":\"3\",\r\n    \"bathroom\":\"2\",\r\n    \"description\":\"dmm\" ,\r\n    \"price\":\"32134\",\r\n    \"washing_machine\":true  ,\r\n    \"iron\":true ,\r\n    \"tivi\":true,\r\n    \"air_conditioner\":true,\r\n    \"wifi\":true,\r\n    \"kitchen\":true,\r\n    \"parking\":true,\r\n    \"pool\":true,\r\n    \"laundry\":true,\r\n    \"image\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTOg-Fb2Ia1cZJlhKF9b65bbuptu1-h74fj9okUQzc&s\",\r\n    \"location_id\":5\r\n \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/room/13",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"room",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7/ Delete Room",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/room/13",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"room",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8/ Upload room image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/room/13",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"room",
+								"13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "1/ Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Nguyen Quang Bach",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "quangbach0299@gmail.coma",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "Male",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "2022-03-28",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0919249695",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2/ Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "mrbachloveyou@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
