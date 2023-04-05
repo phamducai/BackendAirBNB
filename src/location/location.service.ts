@@ -50,7 +50,7 @@ export class LocationService {
   }
 
   async getLocationById(locationId: number) {
-    const location = await this.prismaService.user.findUnique({
+    const location = await this.prismaService.location.findUnique({
       where: { id: locationId }
     })
 

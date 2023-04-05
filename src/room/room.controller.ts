@@ -5,8 +5,9 @@ import { RoomDTO } from './dto/room.dto'
 import { RoomService } from './room.service'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { diskStorage } from 'multer'
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger'
 import { AuthGuard } from '@nestjs/passport'
+import { FileUploadDto } from 'src/user/dto/user.dto'
 
 @ApiTags('Room')
 @ApiBearerAuth()
@@ -59,6 +60,11 @@ export class RoomController {
   }
 
   @Post('upload/:id')
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    description: 'upload image',
+    type: FileUploadDto
+  })
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({
