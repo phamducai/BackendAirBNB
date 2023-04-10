@@ -1,9 +1,11 @@
+import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { ForbiddenException, Injectable } from '@nestjs/common'
+import { ForbiddenException } from '@nestjs/common'
 import { PrismaService } from '../prisma/prisma.service'
 import { RegisterAuthDTO, LoginAuthDTO } from './dto/auth.dto'
-import * as argon from 'argon2'
+import * as bcrypt from 'bcrypt'
 import { JwtService } from '@nestjs/jwt'
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -14,7 +16,7 @@ export class AuthService {
 
   async register(registerDTO: RegisterAuthDTO) {
     try {
-      const hashedPassword = await argon.hash(registerDTO.password)
+      const hashedPassword = await bcrypt.hash(registerDTO.password, 10)
       console.log(hashedPassword)
       const dataImport = await this.prismaService.user.create({
         data: {
@@ -54,7 +56,7 @@ export class AuthService {
       throw new ForbiddenException('User not found')
     }
 
-    const passwordMatched = await argon.verify(user.password, loginDTO.password)
+    const passwordMatched = await bcrypt.compare(loginDTO.password, user.password)
 
     if (!passwordMatched) {
       throw new ForbiddenException('Incorrect password')
